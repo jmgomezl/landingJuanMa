@@ -55,7 +55,7 @@ function Benefits() {
             <Grid container spacing={0} sx={{ height: '100%', marginTop: 0 }} >
 
                 <Grid item xs={12} sx={{ height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                    <Typography variant="h2" color="white" sx={{ mb: 1, fontFamily: '"Montserrat", Sans-serif', fontWeight: '700', fontSize: { lg: 76, xl: 76, }, }}>IPC COLOMBIA</Typography>
+                    <Typography variant="h2" color="white" sx={{ mb: 1, fontFamily: '"Montserrat", Sans-serif', fontWeight: '700', fontSize: { lg: 76, xl: 76, }, }}>ICP COLOMBIA</Typography>
                     <Typography variant="h4" color="white" sx={{ mt: 3, mb: 2, fontFamily: '"Montserrat", Sans-serif', }}>¡Estamos trabajando en algo increíble!</Typography>
                     <Typography variant="body1" color="white" sx={{ mt: 3, mb: 2, fontFamily: '"Montserrat", Sans-serif', fontStyle: 'italic', fontSize: 20, width: { xs: '90%', lg: '50%' } }}>
                         Gracias por tu paciencia mientras construimos una nueva experiencia para ti. Estamos ocupados creando algo especial que pronto estará disponible.

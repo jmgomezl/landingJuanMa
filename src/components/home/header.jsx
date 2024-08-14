@@ -86,7 +86,7 @@ export default function Header() {
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
                     >
-                        IPC
+                        ICP
                     </Typography>
                     <Search>
                         <SearchIconWrapper>
