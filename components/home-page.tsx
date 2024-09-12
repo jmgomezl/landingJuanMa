@@ -57,8 +57,8 @@ function ImageGallery() {
             <Image
               src={src}
               alt={`Community Image ${index + 1}`}
-              layout="fill"
-              objectFit="cover"
+              fill
+              style={{ objectFit: "cover" }}
             />
           </motion.div>
         ))}
@@ -125,7 +125,7 @@ function AnimatedCode() {
     updateText()
 
     return () => clearTimeout(timeoutId)
-  }, [])
+  }, [fullText])
 
   useEffect(() => {
     const adjustFontSize = () => {
@@ -144,7 +144,7 @@ function AnimatedCode() {
     adjustFontSize()
     window.addEventListener('resize', adjustFontSize)
     return () => window.removeEventListener('resize', adjustFontSize)
-  }, [])
+  }, [fullText])
 
   return (
     <pre 
