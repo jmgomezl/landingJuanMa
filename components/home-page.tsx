@@ -9,6 +9,13 @@ import { useEffect, useState, useRef, useCallback } from "react"
 import useEmblaCarousel from "embla-carousel-react"
 import { motion } from "framer-motion"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { ReactNode } from "react";
+
+interface NavItemProps {
+  href: string;
+  children: ReactNode;
+  isActive?: boolean;
+}
 
 const images = [
   "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/imgOne-yWAPSQwTJHXBJzqQd8NbKGGfu6bwHn.jpg",
@@ -67,7 +74,7 @@ function ImageGallery() {
   )
 }
 
-function NavItem({ href, children, isActive = false }) {
+function NavItem({ href, children, isActive = false }: NavItemProps) {
   return (
     <li>
       <Link 
@@ -158,7 +165,7 @@ function AnimatedCode() {
 }
 
 export function HomePage() {
-  const [activeNavItem, setActiveNavItem] = useState('Inicio')
+  const [activeNavItem] = useState('Inicio')
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-[#8454f4] to-[#192442] text-white relative overflow-hidden">
