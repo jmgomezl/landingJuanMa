@@ -48,10 +48,8 @@ function ImageGallery() {
   }, [emblaApi])
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const intervalId = setInterval(autoplay, 5000)
-      return () => clearInterval(intervalId)
-    }
+    const intervalId = setInterval(autoplay, 5000)
+    return () => clearInterval(intervalId)
   }, [autoplay])
 
   return (
@@ -84,7 +82,7 @@ function ImageGallery() {
   )
 }
 
-function NavItem({ href, children, isActive = false }) {
+function NavItem({ href, children, isActive = false }: { href: string, children: React.ReactNode, isActive?: boolean }) {
   return (
     <li>
       <Link 
@@ -111,7 +109,7 @@ function NavItem({ href, children, isActive = false }) {
 
 function AnimatedCode() {
   const [text, setText] = useState('')
-  const containerRef = useRef(null)
+  const containerRef = useRef<HTMLDivElement>(null)
   const fullText = `actor HelloWorld {
   public func greet() : async Text {
       return "Hello, World!";
@@ -121,17 +119,17 @@ function AnimatedCode() {
   useEffect(() => {
     let currentIndex = 0
     let isDeleting = false
-    let timeoutId
+    let timeoutId: NodeJS.Timeout
 
     const updateText = () => {
       if (!isDeleting && currentIndex <= fullText.length) {
         setText(fullText.slice(0, currentIndex))
         currentIndex++
-        timeoutId = setTimeout(updateText, 30) // Tiempo reducido para una experiencia más rápida
+        timeoutId = setTimeout(updateText, 30) // Faster typing experience
       } else if (isDeleting && currentIndex >= 0) {
         setText(fullText.slice(0, currentIndex))
         currentIndex--
-        timeoutId = setTimeout(updateText, 20) // Eliminación más rápida
+        timeoutId = setTimeout(updateText, 20) // Faster deleting experience
       } else {
         isDeleting = !isDeleting
         timeoutId = setTimeout(updateText, isDeleting ? 800 : 1500)
@@ -141,13 +139,13 @@ function AnimatedCode() {
     updateText()
 
     return () => clearTimeout(timeoutId)
-  }, [])
+  }, [fullText])
 
   return (
     <div 
       ref={containerRef} 
       className="bg-black text-green-400 p-4 rounded-md overflow-x-auto w-full max-w-full"
-      style={{ fontFamily: "monospace", fontSize: "clamp(12px, 2vw, 16px)" }} // Establecer una fuente monoespaciada y tamaño dinámico
+      style={{ fontFamily: "monospace", fontSize: "clamp(12px, 2vw, 16px)" }}
     >
       <pre className="whitespace-pre-wrap break-words leading-relaxed">
         <code>{text}</code>
@@ -167,34 +165,27 @@ function EventMap() {
     }
   }, []);
 
-  // Definir un icono personalizado para el marcador
   const icpMarkerIcon = new L.Icon({
     iconUrl: icpLogo.src,
-    iconSize: [32, 32], // Ajustar el tamaño del icono
-    iconAnchor: [16, 32], // Punto de anclaje del icono
-    popupAnchor: [0, -32], // Punto de anclaje del popup respecto al icono
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32],
   });
 
-  // Definir los puntos de interés
   const eventLocations = [
     {
       name: "Hackathon Medellín - Marzo 2024",
-      position: [6.2442, -75.5812], // Coordenadas de Medellín
+      position: [6.2442, -75.5812],
     },
     {
       name: "NASA Apps Challenge - Chía, Octubre 2024",
-      position: [4.8581, -74.0573], // Coordenadas de Chía
+      position: [4.8581, -74.0573],
     },
     {
       name: "Presentación Gabbii - Cali, Octubre 2024",
-      position: [3.4516, -76.5319], // Coordenadas de Cali
+      position: [3.4516, -76.5319],
     },
   ];
-
-  if (typeof window === "undefined") {
-    // Return nothing if on the server side
-    return null;
-  }
 
   return (
     <div className="w-full h-48 md:h-64 rounded-lg shadow-lg overflow-hidden">
@@ -217,9 +208,9 @@ function EventMap() {
   );
 }
 
-function EventCard({ title, date, time, link }) {
+function EventCard({ title, date, time, link }: { title: string, date: string, time: string, link: string }) {
   const controls = useAnimation()
-  const cardRef = useRef(null)
+  const cardRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -231,13 +222,14 @@ function EventCard({ title, date, time, link }) {
       { threshold: 0.1 }
     )
 
-    if (cardRef.current) {
-      observer.observe(cardRef.current)
+    const currentCardRef = cardRef.current; // Capture ref in a variable
+    if (currentCardRef) {
+      observer.observe(currentCardRef)
     }
 
     return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current)
+      if (currentCardRef) {
+        observer.unobserve(currentCardRef)
       }
     }
   }, [controls])
