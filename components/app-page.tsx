@@ -264,7 +264,7 @@ function EventCard({ title, date, time, link }: { title: string, date: string, t
 }
 
 export function Page() {
-  const [activeNavItem, setActiveNavItem] = useState('Inicio')
+  const [activeNavItem] = useState('Inicio')
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-[#8454f4] to-[#192442] text-white relative overflow-hidden">
