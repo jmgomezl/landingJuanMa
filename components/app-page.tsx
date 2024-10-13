@@ -15,6 +15,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import markerShadowPng from "leaflet/dist/images/marker-shadow.png";
 import icpLogo from '@/app/icplogo.png'; // Import the ICP logo
+import { LatLngTuple } from 'leaflet';
 
 const images = [
   "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/imgOne-yWAPSQwTJHXBJzqQd8NbKGGfu6bwHn.jpg",
@@ -157,13 +158,16 @@ function AnimatedCode() {
 function EventMap() {
   useEffect(() => {
     if (typeof window !== "undefined") {
-      delete L.Icon.Default.prototype._getIconUrl;
       L.Icon.Default.mergeOptions({
         iconUrl: markerIconPng,
         shadowUrl: markerShadowPng,
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        shadowSize: [41, 41],
       });
     }
-  }, []);
+  }, []);  
+  
 
   const icpMarkerIcon = new L.Icon({
     iconUrl: icpLogo.src,
@@ -172,18 +176,18 @@ function EventMap() {
     popupAnchor: [0, -32],
   });
 
-  const eventLocations = [
+  const eventLocations: { name: string; position: LatLngTuple }[] = [
     {
       name: "Hackathon Medellín - Marzo 2024",
-      position: [6.2442, -75.5812],
+      position: [6.2442, -75.5812], // LatLngTuple
     },
     {
       name: "NASA Apps Challenge - Chía, Octubre 2024",
-      position: [4.8581, -74.0573],
+      position: [4.8581, -74.0573], // LatLngTuple
     },
     {
       name: "Presentación Gabbii - Cali, Octubre 2024",
-      position: [3.4516, -76.5319],
+      position: [3.4516, -76.5319], // LatLngTuple
     },
   ];
 
@@ -203,6 +207,7 @@ function EventMap() {
             <Popup>{event.name}</Popup>
           </Marker>
         ))}
+
       </MapContainer>
     </div>
   );
