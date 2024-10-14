@@ -1,7 +1,5 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  output: 'standalone',
   images: {
     remotePatterns: [
       {
@@ -14,6 +12,8 @@ const nextConfig = {
       },
     ],
   },
+  output: 'standalone',
 };
 
-module.exports = nextConfig; // Use CommonJS syntax
+module.exports = nextConfig;
+
