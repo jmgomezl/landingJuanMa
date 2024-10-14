@@ -1,10 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  images: {
-    domains: ['drive.google.com', 'hebbkx1anhila5yf.public.blob.vercel-storage.com'],
-  },
   output: 'standalone',
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'drive.google.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'hebbkx1anhila5yf.public.blob.vercel-storage.com',
+      },
+    ],
+  },
 };
 
-module.exports = nextConfig;
+module.exports = nextConfig; // Use CommonJS syntax
