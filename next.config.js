@@ -1,17 +1,9 @@
 const nextConfig = {
+  port: 3000,
   reactStrictMode: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'drive.google.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'hebbkx1anhila5yf.public.blob.vercel-storage.com',
-      },
-    ],
-  },
+    domains: ['drive.google.com', 'hebbkx1anhila5yf.public.blob.vercel-storage.com'],
+  },  
   output: 'standalone',
 };
 
